@@ -43,8 +43,15 @@ router.get('/courses', asyncHandler(async (req, res) => {
 }));
 
 // Route that returns a specific course and associated users.
-router.get('/courses', asyncHandler(async (req,res) => {
-
+router.get('/courses/:id', asyncHandler(async (req,res) => {
+    const course = await Course.findOne({
+        where: { id: req.params.id },
+        include: [
+            {
+                model: User,
+            }
+        ]
+    })
 }));
 
 // Route that creates a new course.
