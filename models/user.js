@@ -36,6 +36,9 @@ module.exports = (sequelize) => {
                 msg: 'That email address is already associated with another user'
             },
             validate: {
+                isEmail: {
+                    msg: 'Email address must be properly formatted'
+                },
                 notNull: {
                     msg: 'An email address is required'
                 },
