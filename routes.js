@@ -85,7 +85,7 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res) => {
         let course = await Course.findOne({ where: { id: req.params.id } });
         const user = req.currentUser;
         if (course) {
-            if (user.id === course.userId) {
+            if (user.id === course.userId) { //confirms user is associated with this course
                 await course.update(req.body);
                 res.status(204).end();
             } else {
@@ -110,7 +110,7 @@ router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res) =>
         let course = await Course.findOne({ where: { id: req.params.id } });
         const user = req.currentUser;
         if (course) {
-            if (user.id === course.userId) {
+            if (user.id === course.userId) { //confirms user is associated with this course
                 await course.destroy();
                 res.status(204).end();
             } else {
